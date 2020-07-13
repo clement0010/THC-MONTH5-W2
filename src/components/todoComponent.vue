@@ -9,6 +9,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     data() {
       return {
@@ -18,6 +20,11 @@
       };
     },
     // Load data with mounted
+    async mounted() {
+      const result = await axios.get('http://localhost:3000/todos');
+      console.log('result', result.data);
+      this.todoList = result.data;
+    },
 
     methods: {
       addTodo: function() {
